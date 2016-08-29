@@ -26,3 +26,24 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#jumbo {
+
+    position: relative;
+    z-index: 1;
+
+
+}
+
+#jumbo:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url(images/office.jpg);
+    opacity: .35;
+
+}
