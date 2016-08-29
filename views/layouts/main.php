@@ -39,6 +39,7 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Относно', 'url' => ['/site/about']],
             ['label' => 'Контакт', 'url' => ['/site/contact']],
+            ['label' => 'Блог', 'url' => 'http://localhost:60301'],
             ['label' => 'Моите поръчки', 'url' => ['orders/index'], 'visible' => !Yii::$app->user->isGuest],
             ['label' => 'Създай поръчка', 'url' => ['orders/create'], 'visible' => !Yii::$app->user->isGuest],
             ['label' => 'Регистрирай се', 'url' => ['site/register'], 'visible' => Yii::$app->user->isGuest],
