@@ -38,6 +38,12 @@ namespace BlogSystem.Migrations
                     date: new DateTime(2016, 03, 27, 17, 53, 48),
                     authorUsername: "merry@gmail.com"
                 );
+                CreateComment(context,
+                    1,
+                    body: @"<p>This is a comment.</p>",
+                    date: new DateTime(2016, 03, 29, 10, 10, 10),
+                    authorUsername: "ioankrumov@abv.bg"
+                    );
 
                 CreatePost(context,
                     title: "Windows 10 Preview with Bash Support Now Available",
@@ -163,5 +169,15 @@ namespace BlogSystem.Migrations
             context.Posts.Add(post);
         }
 
+        private void CreateComment(ApplicationDbContext context,
+           int PostId, string body, DateTime date, string authorUsername)
+        {
+            var comment = new Comment();
+            comment.Body = body;
+            comment.Date = date;
+            comment.Author = context.Users.Where(u => u.UserName == authorUsername).FirstOrDefault();
+            comment.Post = context.Posts.Where(p => p.Id == PostId).FirstOrDefault();
+            context.Comments.Add(comment);
+        }
     }
 }

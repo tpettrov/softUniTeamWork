@@ -7,9 +7,10 @@ using System.Web;
 
 namespace BlogSystem.Models
 {
-    public class Post
+    public class Comment
     {
-        public Post()
+
+        public Comment()
         {
             this.Date = DateTime.Now;
         }
@@ -18,25 +19,24 @@ namespace BlogSystem.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(200)]
-        [Display(Name = "Заглавие")]
-        public string Title { get; set; }
-
-        [Required]
-        [Display(Name = "Текст")]
         [DataType(DataType.MultilineText)]
+        [Display(Name = "Текст")]
         public string Body { get; set; }
 
         [Display(Name = "Автор")]
         [ForeignKey("Author_Id")]
         public ApplicationUser Author { get; set; }
-        
+
+        [ForeignKey("Post_Id")]
+        public Post Post { get; set; }
+
+        public int Post_Id { get; set; }
         public string Author_Id { get; set; }
 
         [Required]
         [Display(Name = "Дата")]
         public DateTime Date { get; set; }
-
-        public virtual ICollection<Comment> Comments { get; set; }
     }
+
+    
 }

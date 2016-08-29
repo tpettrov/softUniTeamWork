@@ -42,8 +42,21 @@
         </dd>
 
     </dl>
+    <dl>
+        @foreach (var comment in Model.Comments)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => comment.Body)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => comment.Body)
+            </dd>
+        }
+    </dl>
+    
 </div>
 <p>
     @Html.ActionLink("Промени", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Добави коментар", "Comment") |
     @Html.ActionLink("Назад към статии", "Index")
 </p>
