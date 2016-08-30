@@ -39,11 +39,14 @@ namespace BlogSystem.Controllers
         }
 
         // GET: Comments/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             ViewBag.Author_Id = new SelectList(db.Users, "Id", "FullName");
             ViewBag.Post_Id = new SelectList(db.Posts, "Id", "Title");
-            return View();
+
+            Comment comment = new Comment {Post_Id = id};
+
+            return View(comment);
         }
 
         // POST: Comments/Create
@@ -51,13 +54,15 @@ namespace BlogSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Post_Id,Author_Id,Date")] Comment comment)
+        public ActionResult Create(Comment comment)
         {
             if (ModelState.IsValid)
             {
+                comment.Author = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+                comment.Post = db.Posts.FirstOrDefault(p => p.Id == comment.Post_Id);
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Posts", new { id = comment.Post_Id });
             }
 
             ViewBag.Author_Id = new SelectList(db.Users, "Id", "FullName", comment.Author_Id);

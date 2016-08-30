@@ -23,7 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Body)
+            @Html.Raw(Model.Body)
         </dd>
 
         <dt>
@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author)
+            @Html.DisplayFor(model => model.Author.FullName)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Date)
@@ -42,21 +42,12 @@
         </dd>
 
     </dl>
-    <dl>
-        @foreach (var comment in Model.Comments)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => comment.Body)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => comment.Body)
-            </dd>
-        }
-    </dl>
+    
+    @Html.DisplayFor(model => model.Comments)
     
 </div>
 <p>
     @Html.ActionLink("Промени", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Добави коментар", "Create", "Comments") |
+    @Html.ActionLink("Comment", "Create", "Comments", new { id = Model.Id }, null) |
     @Html.ActionLink("Назад към статии", "Index")
 </p>

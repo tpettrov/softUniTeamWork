@@ -72,10 +72,14 @@ namespace BlogSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = db.Posts.Include(path => path.Author).FirstOrDefault(p => p.Id == id);
             if (post == null)
             {
                 return HttpNotFound();
+            }
+            foreach (var item in post.Comments)
+            {
+                item.Author = db.Users.FirstOrDefault(u => u.Id == item.Author_Id);
             }
             return View(post);
         }
