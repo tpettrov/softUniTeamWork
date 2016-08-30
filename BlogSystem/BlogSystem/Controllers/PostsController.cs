@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BlogSystem.Models;
+using PagedList;
 
 namespace BlogSystem.Controllers
 {
@@ -15,9 +16,53 @@ namespace BlogSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.Posts.Include(p => p.Author).ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+
+            var posts = from s in db.Posts
+                           select s;
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                posts = posts.Where(p => p.Title.Contains(searchString)
+                                       || p.Author.FullName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    posts = posts.OrderByDescending(s => s.Title);
+                    break;
+                case "Date":
+                    posts = posts.OrderBy(s => s.Date);
+                    break;
+                case "date_desc":
+                    posts = posts.OrderByDescending(s => s.Date);
+                    break;
+                default:
+                    posts = posts.OrderBy(s => s.Title);
+                    break;
+            }
+
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            return View(posts.Include(p => p.Author).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Posts/Details/5
