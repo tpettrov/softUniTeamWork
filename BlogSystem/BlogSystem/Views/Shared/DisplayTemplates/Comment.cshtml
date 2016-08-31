@@ -1,8 +1,36 @@
 ﻿@model  BlogSystem.Models.Comment
-<dt>
+@*<dt class="col-md-1">
     @Model.Author.FullName (@Model.Date)
 </dt>
-<dd>
+<dd class="col-md-1">
     @Model.Body
-</dd>
+</dd>*@
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="page-header">
+                <h5><small class="pull-right"> от Дата </small> Коментар #@Model.Id </h5>
+            </div>
+            <div class="comments-list">
+                <div class="media">
+                    <p class="pull-right"><small>@Model.Date</small></p>
+                    @*<a class="media-left" href="#">
+                        @Model.Author.FullName
+                    </a>*@
+                    <div class="media-body">
+
+                        <h4 class="media-heading user_name">@Model.Author.FullName</h4>
+                        @Model.Body
+
+                      
+                    </div>
+                </div>
+               
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
