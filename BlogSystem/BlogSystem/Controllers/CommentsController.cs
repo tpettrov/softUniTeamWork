@@ -40,6 +40,7 @@ namespace BlogSystem.Controllers
         }
 
         // GET: Comments/Create
+        [Authorize]
         public ActionResult Create(int id)
         {
             ViewBag.Author_Id = new SelectList(db.Users, "Id", "FullName");
@@ -54,6 +55,7 @@ namespace BlogSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Comment comment)
         {
