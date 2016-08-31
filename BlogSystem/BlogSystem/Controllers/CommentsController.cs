@@ -15,7 +15,7 @@ namespace BlogSystem.Controllers
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+            
         // GET: Comments
         [Authorize(Roles = "Administrators")]
         public ActionResult Index()
@@ -24,6 +24,7 @@ namespace BlogSystem.Controllers
             return View(comments.ToList());
         }
 
+        //COOMMENtt
         // GET: Comments/Details/5
         public ActionResult Details(int? id)
         {
