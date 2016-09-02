@@ -6,11 +6,12 @@
     @Model.Body
 </dd>*@
 
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <div class="page-header">
-                <h5><small class="pull-right"> от Дата </small> Коментар #@Model.Id </h5>
+                <h5><small class="pull-right"> от Дата </small> Коментар от <span class="media-heading user_name"> @Model.Author.FullName</span> </h5>
             </div>
             <div class="comments-list">
                 <div class="media">
@@ -20,7 +21,7 @@
                     </a>*@
                     <div class="media-body">
 
-                        <h4 class="media-heading user_name">@Model.Author.FullName</h4>
+                        
                         @Model.Body
 
                       
@@ -34,3 +35,4 @@
 
         </div>
     </div>
+
