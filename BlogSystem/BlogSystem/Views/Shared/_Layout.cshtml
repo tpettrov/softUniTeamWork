@@ -25,6 +25,8 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Нова статия", "Create", "Posts")</li>
                     <li>@Html.ActionLink("Статии", "Index", "Posts")</li>
+                    @if (User.Identity.Name == "admin@gmail.com")
+                    {<li>   @Html.ActionLink("Всички коментари", "Index", "Comments")</li> }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
