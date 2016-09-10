@@ -38,11 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'visibleButtons' => ['update' => function ($model) {
 
                     if (MyUser::getUsername() == 'Admin') return true;
-                    else return ($model->state == 'обработва се' && MyUser::getUsername() != 'Admin') ? true : false;
+                    else return ($model->state == 'Обработва се' && MyUser::getUsername() != 'Admin') ? true : false;
                 }, 'delete' => function ($model) {
                     if (MyUser::getUsername() == 'Admin') return true;
                     else
-                     return ($model->state == 'обработва се' && MyUser::getUsername() != 'Admin') ?  true : false;
+                     return ($model->state == 'Обработва се' && MyUser::getUsername() != 'Admin') ?  true : false;
                 } ]],
 
         ],

@@ -73,7 +73,7 @@ class OrdersController extends Controller
 
         $model = new Orders();
 
-        $model-> state = 'обработва се';
+        $model-> state = 'Обработва се';
         $model-> user = MyUser::getUsername();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -116,7 +116,7 @@ class OrdersController extends Controller
     {
         if(Yii::$app->user->isGuest) return $this->redirect(['/site/login']);
 
-        if (MyUser::getUsername() == 'Admin' || $model->state == 'обработва се')
+        if (MyUser::getUsername() == 'Admin' || $model->state == 'Обработва се')
 
         {$this->findModel($id)->delete(); return $this->redirect(['index']);}
 

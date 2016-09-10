@@ -24,9 +24,9 @@ $buttonDelete = Html::a('Изтрий', ['delete', 'id' => $model->id], [
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= MyUser::getUsername() == 'Admin' || $model->state == 'обработва се' ? $buttonChange : null ?>
+        <?= MyUser::getUsername() == 'Admin' || $model->state == 'Обработва се' ? $buttonChange : null ?>
 
-        <?= MyUser::getUsername() == 'Admin'|| $model->state == 'обработва се' ? $buttonDelete : null  ?>
+        <?= MyUser::getUsername() == 'Admin'|| $model->state == 'Обработва се' ? $buttonDelete : null  ?>
         <?= Html::a('Виж всички', ['index', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
     </p>
 
