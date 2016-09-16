@@ -6,6 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Orders */
 use app\models\MyUser;
+use yii\helpers\Url;
 
 $this->title = "Преглед на поръчка номер: $model->id";
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
@@ -18,6 +19,7 @@ $buttonDelete = Html::a('Изтрий', ['delete', 'id' => $model->id], [
         'method' => 'post',
     ],
 ]);
+$url=Url::to(['orders/view', 'id'=>$model->id, 'slug'=>$model->slug]);
 ?>
 <div class="orders-view">
 

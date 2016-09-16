@@ -53,7 +53,7 @@ class OrdersController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id, $slug = null)
     {
         if(Yii::$app->user->isGuest) return $this->redirect(['/site/login']);
 

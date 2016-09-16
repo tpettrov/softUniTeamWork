@@ -6,6 +6,7 @@
  */
 
 namespace yii\db;
+use yii\behaviors\SluggableBehavior;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -645,4 +646,17 @@ class ActiveRecord extends BaseActiveRecord
 
         return isset($transactions[$scenario]) && ($transactions[$scenario] & $operation);
     }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'adress',
+                //'slugAttribute' => 'slug',
+            ],
+        ];
+    }
+   
+
 }

@@ -43,8 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     if (MyUser::getUsername() == 'Admin') return true;
                     else
                      return ($model->state == 'Обработва се' && MyUser::getUsername() != 'Admin') ?  true : false;
-                } ]],
+                }  ],'urlCreator' => function ($action, $model, $slug) {
+
+        return \yii\helpers\Url::toRoute(['orders/view', 'id'=>$model->id, 'slug'=>$model->slug]);
+
+    }],
 
         ],
+
     ]); ?>
 </div>

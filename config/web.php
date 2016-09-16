@@ -1,7 +1,7 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-
+use yii\db\ActiveRecord;
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -40,15 +40,12 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
 
         'urlManager' => [
-
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'enableStrictParsing' => false,
-            'rules' => array(
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-            ),
+            //'enableStrictParsing' => false,
+            'rules' =>  ['orders/<id:\d+>/<slug>' => 'orders/view'
+                ],
             ],
     ],
     'params' => $params,

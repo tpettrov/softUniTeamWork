@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+
 use Yii;
 
 /**
@@ -14,7 +15,7 @@ use Yii;
  * @property string $state
  * @property string $user
  * @property string $holder
- *
+ * @property string $slug
  * @property MyUser $user0
  */
 class Orders extends \yii\db\ActiveRecord
@@ -36,7 +37,7 @@ class Orders extends \yii\db\ActiveRecord
             [['content', 'adress', 'state'], 'required'],
             [['content'], 'string'],
             [['date'], 'safe'],
-            [['adress', 'state', 'user', 'holder'], 'string', 'max' => 45],
+            [['adress', 'state', 'user', 'holder', 'slug' ], 'string', 'max' => 45],
             [['user'], 'exist', 'skipOnError' => true, 'targetClass' => MyUser::className(), 'targetAttribute' => ['user' => 'username']],
         ];
     }
@@ -64,4 +65,6 @@ class Orders extends \yii\db\ActiveRecord
     {
         return $this->hasOne(MyUser::className(), ['username' => 'user']);
     }
+
+    
 }
